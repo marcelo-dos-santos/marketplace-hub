@@ -69,7 +69,7 @@
                     <p class="text-lg text-gray-600">Os produtos mais vendidos e bem avaliados</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style="padding:85px;">
                     @foreach($featuredProducts as $product)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                         <div class="aspect-w-1 aspect-h-1 bg-gray-200">
