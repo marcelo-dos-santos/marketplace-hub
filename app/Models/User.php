@@ -30,6 +30,7 @@ class User extends Authenticatable
         'state',
         'zip_code',
         'country',
+        'profile_photo_path',
     ];
 
     /**

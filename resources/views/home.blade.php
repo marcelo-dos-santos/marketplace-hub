@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Hub</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
-    <x-app-layout>
+<x-app-layout>
         <!-- Hero Section -->
         <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white">
             <div class="w-full px-8 py-24">
@@ -182,7 +171,4 @@
                 </div>
             </div>
         </section>
-    </x-app-layout>
-</body>
-
-</html>
+</x-app-layout>

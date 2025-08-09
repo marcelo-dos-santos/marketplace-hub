@@ -7,18 +7,6 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC.svg)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF.svg)](https://vitejs.dev)
 
-## 📋 Índice
-
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Estrutura do Banco de Dados](#estrutura-do-banco-de-dados)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Uso](#uso)
-- [Roadmap](#roadmap)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
-
 ## 🎯 Sobre o Projeto
 
 Marketplace Hub é uma plataforma de e-commerce multi-vendedor desenvolvida com Laravel, oferecendo uma solução completa para conectar vendedores e compradores. O projeto foi desenvolvido como portfolio, demonstrando habilidades em desenvolvimento web full-stack, arquitetura escalável e boas práticas de desenvolvimento.
