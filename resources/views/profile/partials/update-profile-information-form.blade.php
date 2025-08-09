@@ -81,4 +81,65 @@
             @endif
         </div>
     </form>
+
+    <script>
+        // Máscara para formatação do telefone
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            
+            // Função para formatar o telefone
+            function formatPhone(value) {
+                // Remove tudo que não é dígito
+                const numbers = value.replace(/\D/g, '');
+                
+                // Aplica a máscara (XX) XXXXX-XXXX
+                if (numbers.length === 0) {
+                    return '';
+                } else if (numbers.length <= 2) {
+                    return `(${numbers}`;
+                } else if (numbers.length <= 7) {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+                } else if (numbers.length <= 11) {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+                } else {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+                }
+            }
+            
+            // Aplica a formatação quando o usuário digita
+            phoneInput.addEventListener('input', function(e) {
+                const oldValue = e.target.value;
+                const newValue = formatPhone(oldValue);
+                
+                // Só atualiza se o valor realmente mudou
+                if (oldValue !== newValue) {
+                    e.target.value = newValue;
+                    
+                    // Calcula a nova posição do cursor
+                    const numbers = newValue.replace(/\D/g, '');
+                    let newCursorPosition;
+                    
+                    if (numbers.length <= 2) {
+                        // Cursor após o último número digitado
+                        newCursorPosition = numbers.length + 1; // +1 para o parêntese
+                    } else if (numbers.length <= 7) {
+                        // Cursor após o espaço
+                        newCursorPosition = numbers.length + 3; // +3 para (XX) 
+                    } else {
+                        // Cursor após o hífen
+                        newCursorPosition = numbers.length + 4; // +4 para (XX) XXXX-
+                    }
+                    
+                    // Define a nova posição do cursor
+                    e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+                }
+            });
+            
+            // Formata o valor inicial se existir
+            if (phoneInput.value) {
+                phoneInput.value = formatPhone(phoneInput.value);
+            }
+        });
+    </script>
+    </form>
 </section>

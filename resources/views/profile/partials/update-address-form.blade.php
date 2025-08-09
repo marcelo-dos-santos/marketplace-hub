@@ -14,15 +14,10 @@
         @method('patch')
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <x-input-label for="phone" :value="__('Telefone')" />
-                <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)" placeholder="(11) 99999-9999" />
-                <x-input-error class="mt-2" :messages="$errors->get('phone')" />
-            </div>
 
             <div>
                 <x-input-label for="zip_code" :value="__('CEP')" />
-                <x-text-input id="zip_code" name="zip_code" type="text" class="mt-1 block w-full" :value="old('zip_code', $user->zip_code)" placeholder="00000-000" />
+                <x-text-input id="zip_code" name="zip_code" type="text" class="mt-1 block w-full" :value="old('zip_code', $user->zip_code)" placeholder="24800-000" />
                 <x-input-error class="mt-2" :messages="$errors->get('zip_code')" />
             </div>
         </div>
@@ -96,4 +91,92 @@
             @endif
         </div>
     </form>
+
+    <script>
+        // Máscaras para formatação
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone_address');
+            const zipCodeInput = document.getElementById('zip_code');
+            
+            // Função para formatar o telefone
+            function formatPhone(value) {
+                const numbers = value.replace(/\D/g, '');
+                
+                if (numbers.length === 0) {
+                    return '';
+                } else if (numbers.length <= 2) {
+                    return `(${numbers}`;
+                } else if (numbers.length <= 7) {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+                } else if (numbers.length <= 11) {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+                } else {
+                    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+                }
+            }
+            
+            // Função para formatar o CEP
+            function formatZipCode(value) {
+                const numbers = value.replace(/\D/g, '');
+                
+                if (numbers.length <= 5) {
+                    return numbers;
+                } else if (numbers.length <= 8) {
+                    return `${numbers.slice(0, 5)}-${numbers.slice(5)}`;
+                } else {
+                    return `${numbers.slice(0, 5)}-${numbers.slice(5, 8)}`;
+                }
+            }
+            
+            // Aplica formatação do telefone
+            phoneInput.addEventListener('input', function(e) {
+                const oldValue = e.target.value;
+                const newValue = formatPhone(oldValue);
+                
+                // Só atualiza se o valor realmente mudou
+                if (oldValue !== newValue) {
+                    e.target.value = newValue;
+                    
+                    // Calcula a nova posição do cursor
+                    const numbers = newValue.replace(/\D/g, '');
+                    let newCursorPosition;
+                    
+                    if (numbers.length <= 2) {
+                        // Cursor após o último número digitado
+                        newCursorPosition = numbers.length + 1; // +1 para o parêntese
+                    } else if (numbers.length <= 7) {
+                        // Cursor após o espaço
+                        newCursorPosition = numbers.length + 3; // +3 para (XX) 
+                    } else {
+                        // Cursor após o hífen
+                        newCursorPosition = numbers.length + 4; // +4 para (XX) XXXX-
+                    }
+                    
+                    // Define a nova posição do cursor
+                    e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+                }
+            });
+            
+            // Aplica formatação do CEP
+            zipCodeInput.addEventListener('input', function(e) {
+                const cursorPosition = e.target.selectionStart;
+                const oldValue = e.target.value;
+                const newValue = formatZipCode(oldValue);
+                
+                e.target.value = newValue;
+                
+                if (cursorPosition < newValue.length) {
+                    e.target.setSelectionRange(cursorPosition, cursorPosition);
+                }
+            });
+            
+            // Formata valores iniciais se existirem
+            if (phoneInput.value) {
+                phoneInput.value = formatPhone(phoneInput.value);
+            }
+            if (zipCodeInput.value) {
+                zipCodeInput.value = formatZipCode(zipCodeInput.value);
+            }
+        });
+    </script>
 </section>
