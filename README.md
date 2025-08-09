@@ -294,10 +294,9 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Autor
 
-**Seu Nome** - [seu-email@exemplo.com](mailto:seu-email@exemplo.com)
+**Marcelo dos Santos** - [marcelinho.cost@gmail.com](mailto:marcelinho.cost@gmail.com)
 
-LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-perfil)
-GitHub: [@seu-usuario](https://github.com/seu-usuario)
+LinkedIn: [Marcelo dos Santos](https://linkedin.com/in/marcelo-dos-santos-4362ba218/)
 
 ---
 

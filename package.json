@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "start": "php -S localhost:8000 -t public && npm run dev"
+        "start": "concurrently \"php -S localhost:8000 -t public\" \"npm run dev\""
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
